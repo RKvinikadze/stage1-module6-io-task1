@@ -22,14 +22,20 @@ public class FileReader {
             e.printStackTrace();
         }
 
-        String[] arr = sb.toString().split("\n");
-        Profile profile = new Profile();
+        try {
+            String[] arr = sb.toString().split("\n");
+            Profile profile = new Profile();
 
-        profile.setName(arr[0].split("\\s+")[1]);
-        profile.setAge(Integer.parseInt(arr[1].split("\\s+")[1]));
-        profile.setEmail(arr[2].split("\\s+")[1]);
-        profile.setPhone(Long.parseLong(arr[3].split("\\s+")[1]));
+            profile.setName(arr[0].split("\\s+")[1]);
+            profile.setAge(Integer.parseInt(arr[1].split("\\s+")[1]));
+            profile.setEmail(arr[2].split("\\s+")[1]);
+            profile.setPhone(Long.parseLong(arr[3].split("\\s+")[1]));
 
-        return profile;
+            return profile;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+        return new Profile();
     }
 }
