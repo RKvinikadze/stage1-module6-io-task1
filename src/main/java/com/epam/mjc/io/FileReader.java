@@ -8,23 +8,18 @@ import java.io.IOException;
 
 public class FileReader {
 
-    public Profile getDataFromFile(File file) throws IOException {
+    public Profile getDataFromFile(File file){
 
-        FileInputStream fileInputStream = null;
         StringBuilder sb = null;
-        try {
-            fileInputStream = new FileInputStream(file);
+        try (FileInputStream fileInputStream = new FileInputStream(file);) {
+
             sb = new StringBuilder();
             int ch;
             while ((ch = fileInputStream.read()) != -1){
                 sb.append((char) ch);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            fileInputStream.close();
+            e.printStackTrace();
         }
 
         String[] arr = sb.toString().split("\n");
